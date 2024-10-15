@@ -1,13 +1,17 @@
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
-import vertexShader from "../../shaders/vertex.glsl";
-import fragmentShader from "../../shaders/fragment.glsl";
+import vertexShader from "../../shaders/earth/vertex.glsl";
+import fragmentShader from "../../shaders/earth/fragment.glsl";
+import atmosphereVertexShader from "../../shaders/atmosphere/vertex.glsl";
+import atmosphereFragmentShader from "../../shaders/atmosphere/fragment.glsl";
 import { TextureLoader } from "three";
 import * as THREE from "three";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 
 function Planet() {
   const { viewport } = useThree();
   const sphereRef = useRef();
+  const atmosphereRef = useRef();
+  const earthGeometry = useMemo(() => new THREE.SphereGeometry(2, 64, 64), []);
 
   const texture = useLoader(TextureLoader, "mars.jpg");
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -19,11 +23,24 @@ function Planet() {
   return (
     <>
       <mesh
+        ref={atmosphereRef}
+        scale={(viewport.height / 5) * 0.6}
+        position={[0, 0.5, 0]}
+        geometry={earthGeometry}
+      >
+        <shaderMaterial
+          side={THREE.BackSide}
+          transparent
+          vertexShader={atmosphereVertexShader}
+          fragmentShader={atmosphereFragmentShader}
+        />
+      </mesh>
+      <mesh
         ref={sphereRef}
         scale={(viewport.height / 5) * 0.5}
         position={[0, 0.5, 0]}
+        geometry={earthGeometry}
       >
-        <sphereGeometry args={[2, 64, 64]} />
         <shaderMaterial
           vertexShader={vertexShader}
           fragmentShader={fragmentShader}
