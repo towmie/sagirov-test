@@ -9,12 +9,12 @@ void main()
     vec3 viewDirection = normalize(vPosition - cameraPosition);
     vec3 normal = normalize(vNormal);
 
-    vec3 sunDirection = vec3(0.0, 0.0, 1.0);
+    vec3 sunDirection = vec3(1.0, -0.5, -1.0);
 
     float sunOrientation = dot(sunDirection, normal);
     
     // Adjust these parameters to control the lighting
-    float contrast = 1.2;  // Increase for more contrast
+    float contrast = 1.8;  // Increase for more contrast
     float midPoint = 0.2;  // Decrease to make dark side larger
     float ambientLight = 0.1;  // Decrease to make dark side darker
     
