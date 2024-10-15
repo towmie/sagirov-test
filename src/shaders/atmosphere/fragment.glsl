@@ -13,9 +13,9 @@ void main()
     float sunOrientation = dot(sunDirection, normal);
     
     // Adjust these parameters to control the lighting
-    float contrast = 1.8;  // Increase for more contrast
-    float midPoint = 0.2;  // Decrease to make dark side larger
-    float ambientLight = 0.1;  // Decrease to make dark side darker
+    float contrast = 0.8;  // Increase for more contrast
+    float midPoint = 0.1;  // Decrease to make dark side larger
+    float ambientLight = 0.09;  // Decrease to make dark side darker
     
     // Apply contrast and shift the midpoint
     float lightIntensity = (sunOrientation - midPoint) * contrast;

@@ -6,11 +6,11 @@ import atmosphereFragmentShader from "../../shaders/atmosphere/fragment.glsl";
 import { TextureLoader } from "three";
 import * as THREE from "three";
 import { useMemo, useRef } from "react";
+import { OrbitControls } from "@react-three/drei";
 
 function Planet() {
   const { viewport } = useThree();
   const sphereRef = useRef();
-  const atmosphereRef = useRef();
   const earthGeometry = useMemo(() => new THREE.SphereGeometry(2, 64, 64), []);
 
   const texture = useLoader(TextureLoader, "mars.jpg");
@@ -22,8 +22,8 @@ function Planet() {
 
   return (
     <>
+      <OrbitControls enableZoom={false} enablePan={false} />
       <mesh
-        ref={atmosphereRef}
         scale={(viewport.height / 5) * 0.6}
         position={[0, 0.5, 0]}
         geometry={earthGeometry}
@@ -46,6 +46,9 @@ function Planet() {
           fragmentShader={fragmentShader}
           uniforms={{
             uTexture: new THREE.Uniform(texture),
+            uLightDirection: new THREE.Uniform(
+              new THREE.Vector3(2.5, -0.75, -1.75)
+            ),
           }}
         />
       </mesh>

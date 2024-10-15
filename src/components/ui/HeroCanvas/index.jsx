@@ -1,5 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import "./index.css";
 import Planet from "../Planet";
 
@@ -11,10 +10,6 @@ function HeroCanvas() {
           fov: 75,
         }}
       >
-        {/* <ambientLight />
-        <pointLight position={[10, 10, 10]} /> */}
-        <OrbitControls enableZoom={false} enablePan={false} />
-
         <Planet />
       </Canvas>
     </div>
