@@ -1,4 +1,61 @@
 .header {
-  width: 100px;
-  background-color: red;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+}
+
+.header__logo {
+  & img {
+    padding: 22px;
+    outline: 2px solid #fff;
+    outline-offset: -5px;
+    mask: conic-gradient(at 10px 10px, #0000 75%, #000 0) 0 0 /
+        calc(100% - 10px) calc(100% - 10px),
+      linear-gradient(#000 0 0) content-box;
+    transition: 0.4s;
+  }
+}
+
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header__nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: all 0.3s linear;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #fff;
+    opacity: 0.4;
+    transition: all 0.3s linear;
+  }
+
+  &:hover {
+    opacity: 0.6;
+
+    &::after {
+      width: 100%;
+    }
+  }
 }

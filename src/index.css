@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #fff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,9 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
 body {
-  margin: 0;
-  padding: 0;
+  height: 100%;
 }
 
 *,
@@ -25,11 +25,25 @@ body {
 }
 
 body {
-  font-family: var(--font-family-body);
-  font-size: var(--text-base);
-  line-height: var(--line-height-body);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #fff;
+  background-image: url("/bg.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat;
+  background-color: #929292;
+  background-blend-mode: multiply;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
