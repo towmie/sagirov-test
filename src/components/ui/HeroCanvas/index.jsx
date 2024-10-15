@@ -14,6 +14,7 @@ function HeroCanvas() {
         {/* <ambientLight />
         <pointLight position={[10, 10, 10]} /> */}
         <OrbitControls enableZoom={false} enablePan={false} />
+
         <Planet />
       </Canvas>
     </div>
