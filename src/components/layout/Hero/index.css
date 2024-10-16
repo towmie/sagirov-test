@@ -1,0 +1,59 @@
+.hero__rocket {
+  position: absolute;
+  bottom: 33%;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 20px;
+
+  @media (width <= 991px) {
+    top: 33%;
+    bottom: unset;
+  }
+}
+
+.hero__rocket-connector {
+  position: absolute;
+  bottom: 26%;
+  right: calc(50% - 5px);
+  z-index: 10;
+  width: 25%;
+}
+
+.hero__rocket-connector-box {
+  position: relative;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -13%;
+    width: 75px;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.5), transparent);
+    transform: rotate(35deg) translate(-50%, -50%);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 5px;
+    height: 5px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+  }
+
+  @media (width <= 991px) {
+    display: none;
+  }
+}
+
+.hero__rocket-connector-box--line {
+}

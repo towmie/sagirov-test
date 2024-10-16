@@ -5,12 +5,12 @@
 
 .header__wrapper {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background: transparent;
+  align-items: center;
 }
 
 .header__logo {
+  height: 82px;
   & img {
     padding: 24px 18px;
     outline: 2px solid #fff;
@@ -24,11 +24,13 @@
 
 .header__nav-list {
   display: flex;
-  align-items: center;
-  gap: 42px;
-  list-style: none;
-  padding: 0;
+  list-style-type: none;
   margin: 0;
+  padding: 0;
+}
+
+.header__nav-item {
+  margin-left: 20px;
 }
 
 .header__nav-link {
@@ -57,5 +59,106 @@
     &::after {
       width: 100%;
     }
+  }
+}
+
+.header__menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.header__menu-button span {
+  display: block;
+  width: 25px;
+  height: 1px;
+  background-color: #fff;
+  margin: 5px 0;
+}
+
+.header__mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.header__mobile-nav.open {
+  right: 0;
+}
+
+.header__mobile-nav-list {
+  list-style-type: none;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.header__mobile-nav-item {
+  margin-bottom: 20px;
+}
+
+.header__mobile-nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.header__close-button {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+@media (max-width: 1015px) {
+  .header__nav {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  .header__nav.open {
+    right: 0;
+  }
+
+  .header__nav-list {
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 50px;
+  }
+
+  .header__nav-item {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .header__nav-link {
+    font-size: 18px;
+  }
+
+  .header__menu-button {
+    display: block;
+    z-index: 999;
+  }
+
+  .header__close-button {
+    display: block;
   }
 }

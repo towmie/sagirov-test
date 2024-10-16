@@ -14,9 +14,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html,
-body {
+body,
+html {
+  margin: 0;
+  padding: 0;
   height: 100%;
+  min-height: 100vh;
+  background-color: #000; /* or your desired background color */
+  color: #fff;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 *,
