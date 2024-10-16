@@ -19,10 +19,10 @@ function Planet({ ...props }) {
   texture.colorSpace = THREE.SRGBColorSpace;
 
   const { atmospherePosition } = useControls({
-    atmospherePosition: { value: { x: -0.18, y: 0.1, z: 0.45 }, step: 0.01 },
+    atmospherePosition: { value: { x: -0.18, y: 0.26, z: 0.45 }, step: 0.01 },
   });
   const { planetPosition } = useControls({
-    planetPosition: { value: { x: 0.04, y: -0.12, z: 0.09 }, step: 0.01 },
+    planetPosition: { value: { x: 0.04, y: -0.21, z: 0.09 }, step: 0.01 },
   });
 
   const planetRef = useRef();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import { infoList } from "../../../data";
+import HeroCanvas from "../HeroCanvas";
 
 function HeroTextContent() {
   const cardRefs = useRef([]);
@@ -44,6 +45,7 @@ function HeroTextContent() {
           <button>Начать путешествие</button>
         </a>
       </div>
+      <HeroCanvas />
       <div className="hero-content__info">
         <ul className="content__info-list">
           {infoList.map((item, index) => (

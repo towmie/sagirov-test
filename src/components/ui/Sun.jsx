@@ -13,7 +13,7 @@ function Sun({ position, ...props }) {
         position={[position.x, position.y, position.z]}
       >
         <sphereGeometry />
-        <meshBasicMaterial color={[5.5, 3, 2]} toneMapped={false} />
+        <meshBasicMaterial color={[1.5, 1.05, 1.05]} toneMapped={false} />
       </mesh>
     </group>
   );
