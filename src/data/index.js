@@ -48,7 +48,7 @@ export const infoList = [
   {
     id: 3,
     text: "календарик за",
-    number: "2001г",
+    number: "2001",
     description: "в подарок",
   },
   {

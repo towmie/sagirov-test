@@ -40,6 +40,9 @@ function HeroTextContent() {
       <div className="hero-content__title">
         <h1>Путешествие</h1>
         <p>на красную планету</p>
+        <a href="/" className="hero-content__start-button">
+          <button>Начать путешествие</button>
+        </a>
       </div>
       <div className="hero-content__info">
         <ul className="content__info-list">
