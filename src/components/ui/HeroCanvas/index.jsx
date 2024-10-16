@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import "./index.css";
 import Planet from "../Planet";
 import Sun from "../Sun";
-import { useControls } from "leva";
+import { Leva, useControls } from "leva";
 
 function HeroCanvas() {
   const { sunPosition } = useControls({
@@ -15,6 +15,7 @@ function HeroCanvas() {
           fov: 75,
         }}
       >
+        <Leva hidden />
         <Sun position={sunPosition} />
         <Planet />
       </Canvas>

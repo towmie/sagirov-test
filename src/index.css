@@ -1,7 +1,8 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Abel", sans-serif;
   font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -46,4 +47,5 @@ body {
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
 }

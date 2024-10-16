@@ -5,13 +5,11 @@ import atmosphereVertexShader from "../../shaders/atmosphere/vertex.glsl";
 import atmosphereFragmentShader from "../../shaders/atmosphere/fragment.glsl";
 import { TextureLoader } from "three";
 import * as THREE from "three";
-import { useMemo, useRef } from "react";
-import { OrbitControls } from "@react-three/drei";
+import { useMemo, useRef, useState } from "react";
 import { useControls } from "leva";
 
 function Planet({ ...props }) {
   const { viewport } = useThree();
-  const sphereRef = useRef();
   const earthGeometry = useMemo(() => new THREE.SphereGeometry(2, 64, 64), []);
 
   const texture = useLoader(TextureLoader, "mars.jpg");
@@ -21,13 +19,77 @@ function Planet({ ...props }) {
     atmospherePosition: { value: { x: -0.18, y: 0.6, z: 0.2 }, step: 0.01 },
   });
 
-  useFrame(() => {
-    sphereRef.current.rotation.y += 0.002;
+  const planetRef = useRef();
+  const [isDragging, setIsDragging] = useState(false);
+  const [previousMousePosition, setPreviousMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
+  const velocityRef = useRef({ x: 0, y: 0 });
+
+  const handlePointerDown = (event) => {
+    setIsDragging(true);
+    setPreviousMousePosition({
+      x: event.clientX,
+      y: event.clientY,
+    });
+  };
+
+  const handlePointerUp = () => {
+    setIsDragging(false);
+  };
+
+  const handlePointerMove = (event) => {
+    if (isDragging && planetRef.current) {
+      const deltaMove = {
+        x: event.clientX - previousMousePosition.x,
+        y: event.clientY - previousMousePosition.y,
+      };
+
+      const rotationSpeed = 0.01;
+      velocityRef.current.x = -deltaMove.x * rotationSpeed; // Add the negative sign here
+      velocityRef.current.y = -deltaMove.y * rotationSpeed; // Keep the negative sign for vertical rotation
+
+      planetRef.current.rotation.y += velocityRef.current.x; // Remove negative sign here
+      planetRef.current.rotation.x += velocityRef.current.y;
+
+      setPreviousMousePosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    }
+  };
+
+  useFrame((state, delta) => {
+    if (planetRef.current) {
+      if (!isDragging) {
+        // Apply damping to slow down the rotation
+        const damping = 0.95;
+        velocityRef.current.x *= damping;
+        velocityRef.current.y *= damping;
+
+        // Apply the slowed down rotation
+        planetRef.current.rotation.y += velocityRef.current.x; // Remove negative sign here
+        planetRef.current.rotation.x += velocityRef.current.y;
+
+        // Stop the rotation when it becomes very small
+        if (Math.abs(velocityRef.current.x) < 0.001) velocityRef.current.x = 0;
+        if (Math.abs(velocityRef.current.y) < 0.001) velocityRef.current.y = 0;
+      }
+
+      // Apply constant rotation when not interacting
+      if (
+        !isDragging &&
+        velocityRef.current.x === 0 &&
+        velocityRef.current.y === 0
+      ) {
+        planetRef.current.rotation.y -= 0.002; // Keep this as is for constant rotation
+      }
+    }
   });
 
   return (
     <group {...props}>
-      <OrbitControls enableZoom={false} enablePan={false} />
       <mesh
         scale={(viewport.height / 5) * 0.51}
         position={[
@@ -45,10 +107,14 @@ function Planet({ ...props }) {
         />
       </mesh>
       <mesh
-        ref={sphereRef}
+        ref={planetRef}
         scale={(viewport.height / 5) * 0.5}
         position={[0, 0.5, 0]}
         geometry={earthGeometry}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        onPointerOut={handlePointerUp}
+        onPointerMove={handlePointerMove}
       >
         <shaderMaterial
           vertexShader={vertexShader}

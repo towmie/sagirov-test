@@ -32,7 +32,7 @@ export const headerNavLinks = [
   },
 ];
 
-export const advantages = [
+export const infoList = [
   {
     id: 1,
     text: "мы",
