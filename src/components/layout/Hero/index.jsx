@@ -1,4 +1,5 @@
 import HeroTextContent from "../../ui/HeroTextContent";
+
 import "./index.css";
 function Hero() {
   return (

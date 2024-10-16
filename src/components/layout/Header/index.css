@@ -20,6 +20,14 @@
       linear-gradient(#000 0 0) content-box;
     transition: 0.4s;
   }
+
+  @media (width <= 991px) {
+    height: 65px;
+
+    & img {
+      height: 65px;
+    }
+  }
 }
 
 .header__nav-list {
@@ -27,6 +35,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  gap: 22px;
 }
 
 .header__nav-item {
