@@ -15,7 +15,7 @@ function HeroCanvas() {
           fov: 75,
         }}
       >
-        <Leva hidden />
+        {/* <Leva hidden /> */}
         <Sun position={sunPosition} />
         <Planet />
       </Canvas>

@@ -10,13 +10,19 @@ import { useControls } from "leva";
 
 function Planet({ ...props }) {
   const { viewport } = useThree();
-  const earthGeometry = useMemo(() => new THREE.SphereGeometry(2, 64, 64), []);
+  const earthGeometry = useMemo(
+    () => new THREE.SphereGeometry(3.2, 64, 64),
+    []
+  );
 
   const texture = useLoader(TextureLoader, "mars.jpg");
   texture.colorSpace = THREE.SRGBColorSpace;
 
   const { atmospherePosition } = useControls({
-    atmospherePosition: { value: { x: -0.18, y: 0.6, z: 0.2 }, step: 0.01 },
+    atmospherePosition: { value: { x: -0.18, y: 0.1, z: 0.45 }, step: 0.01 },
+  });
+  const { planetPosition } = useControls({
+    planetPosition: { value: { x: 0.04, y: -0.12, z: 0.09 }, step: 0.01 },
   });
 
   const planetRef = useRef();
@@ -91,7 +97,7 @@ function Planet({ ...props }) {
   return (
     <group {...props}>
       <mesh
-        scale={(viewport.height / 5) * 0.51}
+        scale={(viewport.height / 5) * 0.55}
         position={[
           atmospherePosition.x,
           atmospherePosition.y,
@@ -109,7 +115,7 @@ function Planet({ ...props }) {
       <mesh
         ref={planetRef}
         scale={(viewport.height / 5) * 0.5}
-        position={[0, 0.5, 0]}
+        position={[planetPosition.x, planetPosition.y, planetPosition.z]}
         geometry={earthGeometry}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
@@ -121,9 +127,7 @@ function Planet({ ...props }) {
           fragmentShader={fragmentShader}
           uniforms={{
             uTexture: new THREE.Uniform(texture),
-            uLightDirection: new THREE.Uniform(
-              new THREE.Vector3(3.5, -1.75, -0.5)
-            ),
+            uLightDirection: new THREE.Uniform(new THREE.Vector3(3.75, -1, 1)),
           }}
         />
       </mesh>
