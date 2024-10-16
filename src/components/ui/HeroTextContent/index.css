@@ -82,6 +82,19 @@
   @media (width <= 768px) {
     width: 100%;
   }
+
+  &:nth-child(1) .content__info-item-wrapper {
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0.1), transparent);
+  }
+  &:nth-child(2) .content__info-item-wrapper {
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+  }
+  &:nth-child(3) .content__info-item-wrapper {
+    background: linear-gradient(-135deg, rgba(255, 255, 255, 0.1), transparent);
+  }
+  &:nth-child(4) .content__info-item-wrapper {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  }
 }
 
 .content__info-item-wrapper {
@@ -90,7 +103,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.04);
+
   border-radius: 2px;
   overflow: hidden;
   position: relative;
