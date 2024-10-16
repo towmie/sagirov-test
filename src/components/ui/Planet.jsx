@@ -11,7 +11,7 @@ import { useControls } from "leva";
 function Planet({ ...props }) {
   const { viewport } = useThree();
   const planetRef = useRef();
-  const texture = useLoader(TextureLoader, "mars.jpg");
+  const texture = useLoader(TextureLoader, "mars.webp");
   texture.colorSpace = THREE.SRGBColorSpace;
 
   const earthGeometry = useMemo(
