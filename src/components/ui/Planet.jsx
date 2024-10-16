@@ -28,8 +28,8 @@ function Planet({ ...props }) {
 
   useFrame(() => {
     if (planetRef.current) {
-      planetRef.current.rotation.y += 0.004;
-      planetRef.current.rotation.x += 0.004;
+      planetRef.current.rotation.y += 0.002;
+      planetRef.current.rotation.x += 0.002;
     }
   });
 
