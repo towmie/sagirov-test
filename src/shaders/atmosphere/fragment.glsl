@@ -29,12 +29,12 @@ void main()
     // Combine lighting with texture color
     // vec3 color = vec3(lightIntensity, 1.0);
     float edgeAlpha = dot(viewDirection, normal);
-    edgeAlpha = smoothstep(0.0, 4.0, edgeAlpha);
+    edgeAlpha = smoothstep(0.0, 2.0, edgeAlpha);
     color += vec3(1.0, 0.0, 0.0);
     color = vec3(edgeAlpha) * color;
 
     // Final color
-    gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(color, edgeAlpha);
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
 }

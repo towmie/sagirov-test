@@ -16,9 +16,9 @@ void main()
     
     // Adjust these parameters to control the lighting
     float contrast = 2.2;  // Decrease for smoother transition
-    float midPoint = 0.1;  // Adjust to control the size of the dark side
+    float midPoint = 0.7;  // Adjust to control the size of the dark side
     float ambientLight = 0.06;  // Increase for brighter dark side
-    float smoothness = 1.0;  // New parameter for transition smoothness
+    float smoothness = 2.0;  // New parameter for transition smoothness
     
     // Apply smoothstep for a smoother transition
     float lightIntensity = smoothstep(-smoothness, smoothness, sunOrientation - midPoint);

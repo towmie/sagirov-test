@@ -7,8 +7,9 @@ import { TextureLoader } from "three";
 import * as THREE from "three";
 import { useMemo, useRef } from "react";
 import { OrbitControls } from "@react-three/drei";
+import { useControls } from "leva";
 
-function Planet() {
+function Planet({ ...props }) {
   const { viewport } = useThree();
   const sphereRef = useRef();
   const earthGeometry = useMemo(() => new THREE.SphereGeometry(2, 64, 64), []);
@@ -16,16 +17,24 @@ function Planet() {
   const texture = useLoader(TextureLoader, "mars.jpg");
   texture.colorSpace = THREE.SRGBColorSpace;
 
+  const { atmospherePosition } = useControls({
+    atmospherePosition: { value: { x: -0.18, y: 0.6, z: 0.2 }, step: 0.01 },
+  });
+
   useFrame(() => {
     sphereRef.current.rotation.y += 0.002;
   });
 
   return (
-    <>
+    <group {...props}>
       <OrbitControls enableZoom={false} enablePan={false} />
       <mesh
-        scale={(viewport.height / 5) * 0.6}
-        position={[0, 0.5, 0]}
+        scale={(viewport.height / 5) * 0.51}
+        position={[
+          atmospherePosition.x,
+          atmospherePosition.y,
+          atmospherePosition.z,
+        ]}
         geometry={earthGeometry}
       >
         <shaderMaterial
@@ -47,12 +56,12 @@ function Planet() {
           uniforms={{
             uTexture: new THREE.Uniform(texture),
             uLightDirection: new THREE.Uniform(
-              new THREE.Vector3(2.5, -0.75, -1.75)
+              new THREE.Vector3(3.5, -1.75, -0.5)
             ),
           }}
         />
       </mesh>
-    </>
+    </group>
   );
 }
 
