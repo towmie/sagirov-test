@@ -11,6 +11,10 @@
     top: 33%;
     bottom: unset;
   }
+  @media (width <= 768px) {
+    top: 23%;
+    bottom: unset;
+  }
 }
 
 .hero__rocket-connector {
